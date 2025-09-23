@@ -1,0 +1,5 @@
+[
+  { "id": "t1", "date": "2025-01-05", "account": "Sales", "description": "Booking S1", "debit": 0, "credit": 120000 },
+  { "id": "t2", "date": "2025-01-08", "account": "Bank", "description": "Deposit", "debit": 120000, "credit": 0 },
+  { "id": "t3", "date": "2025-01-15", "account": "Expense", "description": "Materials", "debit": 15000, "credit": 0 }
+]

@@ -1,0 +1,6 @@
+[
+  { "id": "e1", "name": "Emma Wilson", "role": "Sales Manager", "joinDate": "2023-08-12", "avatar": "" },
+  { "id": "e2", "name": "Liam Brown", "role": "Accountant", "joinDate": "2022-11-02", "avatar": "" },
+  { "id": "e3", "name": "Olivia Davis", "role": "HR Executive", "joinDate": "2024-02-18", "avatar": "" },
+  { "id": "e4", "name": "Noah Miller", "role": "Procurement Officer", "joinDate": "2021-05-30", "avatar": "" }
+]

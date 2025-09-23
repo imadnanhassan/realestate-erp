@@ -1,0 +1,8 @@
+[
+  { "id": "prod1", "type": "Land", "title": "5 Katha Plot", "location": "North Avenue", "price": 150000 },
+  { "id": "prod2", "type": "Flat", "title": "2BHK Apartment", "location": "City Central", "price": 120000 },
+  { "id": "prod3", "type": "Land Share", "title": "Meadow Share", "location": "Green Fields", "price": 30000 },
+  { "id": "prod4", "type": "Hotel Share", "title": "Hotel Indigo Share", "location": "Beach Front", "price": 50000 },
+  { "id": "prod5", "type": "Commercial", "title": "Shop Space 600sqft", "location": "Business District", "price": 95000 },
+  { "id": "prod6", "type": "Warehouse", "title": "Industrial Plot", "location": "Logistics Park", "price": 200000 }
+]
