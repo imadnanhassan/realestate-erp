@@ -1,4 +1,7 @@
 import Card from "@/components/common/Card";
+import PageHeader from "@/components/common/PageHeader";
+import Link from "next/link";
+import Button from "@/components/ui/Button";
 
 const materials = [
   { sku: "CEM-OPC", name: "Cement OPC", stock: 520, unit: "bag", min: 200, location: "Warehouse A" },
@@ -14,7 +17,7 @@ const movements = [
 export default function InventoryPage() {
   return (
     <div className="space-y-4">
-      <h1 className="text-lg font-semibold">Material Inventory</h1>
+      <PageHeader title="Material Inventory" actions={<Link href="/inventory/items"><Button>Open Items</Button></Link>} />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card title="Stock Overview">
           <div className="overflow-x-auto">

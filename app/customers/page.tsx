@@ -9,6 +9,8 @@ import PageHeader from "@/components/common/PageHeader";
 import FilterBar from "@/components/common/FilterBar";
 import Select from "@/components/ui/Select";
 import useFakeLoading from "@/components/hooks/useFakeLoading";
+import IconButton from "@/components/ui/IconButton";
+import { Eye, Pencil, Trash2, Plus } from "lucide-react";
 
 export default function CustomersPage() {
   const loading = useFakeLoading(400);
@@ -23,10 +25,22 @@ export default function CustomersPage() {
     { header: "Phone", accessor: "phone" },
     { header: "Email", accessor: "email" },
     { header: "Status", accessor: "status" },
+    {
+      header: "Actions",
+      accessor: "actions",
+      cell: (r: any) => (
+        <div className="flex items-center gap-2">
+          <Link href={`/customers/${r.id}`}><IconButton aria-label="View"><Eye className="h-4 w-4" /></IconButton></Link>
+          <Link href={`/customers/add?id=${r.id}`}><IconButton aria-label="Edit"><Pencil className="h-4 w-4" /></IconButton></Link>
+          <IconButton aria-label="Delete"><Trash2 className="h-4 w-4" /></IconButton>
+        </div>
+      ),
+      className: "w-40"
+    }
   ], []);
   return (
     <div className="space-y-4">
-      <PageHeader title="Customers" actions={<Button>Add Customer</Button>} />
+      <PageHeader title="Customers" actions={<Link href="/customers/add"><Button><Plus className="h-4 w-4" />Add Customer</Button></Link>} />
       <FilterBar>
         <Select value={status} onChange={(e) => setStatus(e.target.value)} className="w-40">
           <option value="">All status</option>

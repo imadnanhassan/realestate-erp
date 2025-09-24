@@ -16,7 +16,8 @@ body {
 }
 
 .container-premium {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply mx-auto px-4 sm:px-6 lg:px-8;
+  max-width: 1200px;
 }
 
 .card {
@@ -28,13 +29,13 @@ body {
 }
 
 .btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-xl transition-colors font-medium;
+  @apply inline-flex items-center justify-center gap-2 rounded-xl transition-all duration-200 ease-out font-medium;
 }
 .btn-primary {
-  @apply bg-accent text-white hover:bg-accent-700 px-4 py-2 shadow-sm;
+  @apply bg-accent text-white hover:bg-accent-700 px-4 py-2 shadow-sm hover:shadow-md hover:-translate-y-0.5;
 }
 .btn-secondary {
-  @apply border border-gray-300 text-gray-900 hover:bg-gray-100 px-4 py-2;
+  @apply border border-gray-300 text-gray-900 hover:bg-gray-100 px-4 py-2 hover:shadow-sm hover:-translate-y-0.5;
 }
 .btn-ghost {
   @apply text-gray-600 hover:text-gray-900 hover:bg-gray-100 px-3 py-2;
