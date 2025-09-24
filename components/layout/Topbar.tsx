@@ -4,9 +4,13 @@ import { Bell, Search, User } from "lucide-react";
 import Input from "@/components/ui/Input";
 import { useState } from "react";
 import { cn } from "../ui/cn";
+import Select from "@/components/ui/Select";
+import { useRBAC, useRolesList } from "@/components/providers/RBACProvider";
 
 export default function Topbar() {
   const [open, setOpen] = useState(false);
+  const roles = useRolesList();
+  const { role, setRoleName } = useRBAC();
 
   return (
     <header className="sticky top-0 z-20 bg-white/80 backdrop-blur border-b border-gray-200">
@@ -22,6 +26,17 @@ export default function Topbar() {
           </form>
         </div>
         <div className="flex items-center gap-2">
+          <div className="hidden sm:block">
+            <Select
+              value={role.name}
+              onChange={(e) => setRoleName(e.target.value)}
+              aria-label="Switch Role"
+            >
+              {roles.map((r) => (
+                <option key={r} value={r}>{r}</option>
+              ))}
+            </Select>
+          </div>
           <button className="btn btn-ghost" aria-label="Notifications">
             <Bell className="h-5 w-5" />
           </button>
@@ -33,7 +48,7 @@ export default function Topbar() {
               aria-expanded={open}
             >
               <User className="h-5 w-5 text-gray-600" />
-              <span className="hidden sm:inline">Admin</span>
+              <span className="hidden sm:inline">{role.name}</span>
             </button>
             <div
               className={cn(

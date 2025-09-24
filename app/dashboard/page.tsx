@@ -5,6 +5,8 @@ import Button from "@/components/ui/Button";
 import sales from "@/data/sales.json";
 import projects from "@/data/projects.json";
 import customers from "@/data/customers.json";
+import PageHeader from "@/components/common/PageHeader";
+import Guard from "@/components/common/Guard";
 
 function currency(n: number) {
   return n.toLocaleString(undefined, { style: "currency", currency: "USD", maximumFractionDigits: 0 });
@@ -35,46 +37,49 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {kpis.map((k) => (
-          <Card key={k.title} title={k.title}>
-            <div className="text-2xl font-semibold">{k.value}</div>
-            <div className="mt-2">
-              <Badge tone="success">+4.2% MoM</Badge>
+    <Guard permission="dashboard:view">
+      <div className="space-y-6">
+        <PageHeader title="Dashboard" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {kpis.map((k) => (
+            <Card key={k.title} title={k.title}>
+              <div className="text-2xl font-semibold">{k.value}</div>
+              <div className="mt-2">
+                <Badge tone="success">+4.2% MoM</Badge>
+              </div>
+            </Card>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div className="lg:col-span-2">
+            <ChartCard
+              title="Sales Trend"
+              subtitle="Last 6 months"
+              type="line"
+              data={trend}
+              xKey="month"
+              yKeys={[{ key: "sales", color: "#4f46e5", label: "Sales" }]}
+            />
+          </div>
+          <Card title="Recent Activity" subtitle="Auto-generated dummy">
+            <ul className="divide-y divide-gray-100">
+              {recent.map((r, i) => (
+                <li key={i} className="py-3 flex items-center justify-between">
+                  <div>
+                    <div className="font-medium text-gray-900">{r.title}</div>
+                    <div className="text-sm text-gray-500">{r.by}</div>
+                  </div>
+                  <span className="text-xs text-gray-500">{r.when}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-4">
+              <Button className="w-full" variant="secondary">View all</Button>
             </div>
           </Card>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="lg:col-span-2">
-          <ChartCard
-            title="Sales Trend"
-            subtitle="Last 6 months"
-            type="line"
-            data={trend}
-            xKey="month"
-            yKeys={[{ key: "sales", color: "#4f46e5", label: "Sales" }]}
-          />
         </div>
-        <Card title="Recent Activity" subtitle="Auto-generated dummy">
-          <ul className="divide-y divide-gray-100">
-            {recent.map((r, i) => (
-              <li key={i} className="py-3 flex items-center justify-between">
-                <div>
-                  <div className="font-medium text-gray-900">{r.title}</div>
-                  <div className="text-sm text-gray-500">{r.by}</div>
-                </div>
-                <span className="text-xs text-gray-500">{r.when}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-4">
-            <Button className="w-full" variant="secondary">View all</Button>
-          </div>
-        </Card>
       </div>
-    </div>
+    </Guard>
   );
 }

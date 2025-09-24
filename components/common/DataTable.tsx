@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Input from "@/components/ui/Input";
 import Select from "@/components/ui/Select";
 import { cn } from "@/components/ui/cn";
+import Skeleton from "@/components/common/Skeleton";
 
 export interface Column<T> {
   header: string;
@@ -17,6 +18,7 @@ interface Props<T> {
   columns: Column<T>[];
   pageSize?: number;
   searchable?: boolean;
+  loading?: boolean;
 }
 
 export default function DataTable<T extends Record<string, any>>({
@@ -24,6 +26,7 @@ export default function DataTable<T extends Record<string, any>>({
   columns,
   pageSize = 10,
   searchable = true,
+  loading = false,
 }: Props<T>) {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
@@ -115,19 +118,29 @@ export default function DataTable<T extends Record<string, any>>({
             </tr>
           </thead>
           <tbody>
-            {current.map((row, i) => (
-              <tr key={i} className="border-t border-gray-100 hover:bg-gray-50">
-                {columns.map((c, j) => {
-                  const key = typeof c.accessor === "string" ? c.accessor : (c.accessor as string);
-                  return (
-                    <td key={j} className={cn("py-3 px-3", c.className)}>
-                      {c.cell ? c.cell(row) : String(row[key] ?? "")}
-                    </td>
-                  );
-                })}
-              </tr>
-            ))}
-            {current.length === 0 && (
+            {loading
+              ? Array.from({ length: Math.min(size, 5) }).map((_, i) => (
+                  <tr key={`skeleton-${i}`} className="border-t border-gray-100">
+                    {columns.map((c, j) => (
+                      <td key={j} className={cn("py-3 px-3", c.className)}>
+                        <Skeleton className="h-4 w-32" />
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              : current.map((row, i) => (
+                <tr key={i} className="border-t border-gray-100 hover:bg-gray-50">
+                  {columns.map((c, j) => {
+                    const key = typeof c.accessor === "string" ? c.accessor : (c.accessor as string);
+                    return (
+                      <td key={j} className={cn("py-3 px-3", c.className)}>
+                        {c.cell ? c.cell(row) : String(row[key] ?? "")}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            {!loading && current.length === 0 && (
               <tr>
                 <td colSpan={columns.length} className="py-10 text-center text-gray-500">
                   No results
