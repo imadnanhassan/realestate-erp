@@ -1,0 +1,6 @@
+[
+  { "id": "c1", "name": "Alice Johnson", "phone": "555-123-4567", "email": "alice@example.com", "status": "Active" },
+  { "id": "c2", "name": "Brian Lee", "phone": "555-222-8899", "email": "brian@example.com", "status": "Lead" },
+  { "id": "c3", "name": "Carla Gomez", "phone": "555-333-7711", "email": "carla@example.com", "status": "Inactive" },
+  { "id": "c4", "name": "Daniel Smith", "phone": "555-444-9911", "email": "daniel@example.com", "status": "Active" }
+]

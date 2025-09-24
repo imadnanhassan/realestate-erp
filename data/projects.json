@@ -1,0 +1,6 @@
+[
+  { "id": "p1", "name": "Skyline Residency", "location": "Uptown", "progress": 72, "budget": 4500000 },
+  { "id": "p2", "name": "Green Meadows", "location": "West End", "progress": 40, "budget": 3200000 },
+  { "id": "p3", "name": "Harbor View", "location": "Bay Area", "progress": 88, "budget": 6000000 },
+  { "id": "p4", "name": "City Central", "location": "Downtown", "progress": 20, "budget": 2800000 }
+]

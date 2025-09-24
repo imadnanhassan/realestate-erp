@@ -1,0 +1,5 @@
+[
+  { "id": "s1", "project": "Skyline Residency", "customer": "Alice Johnson", "amount": 120000, "status": "Confirmed", "date": "2025-01-15" },
+  { "id": "s2", "project": "Green Meadows", "customer": "Brian Lee", "amount": 80000, "status": "Pending", "date": "2025-01-20" },
+  { "id": "s3", "project": "Harbor View", "customer": "Carla Gomez", "amount": 160000, "status": "Confirmed", "date": "2025-02-04" }
+]
