@@ -2,7 +2,24 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, LayoutDashboard, Building2, Boxes, Users, Handshake, Truck, ShoppingCart, Wallet, Landmark, Briefcase, Settings, FileBarChart } from "lucide-react";
+import {
+  Menu,
+  LayoutDashboard,
+  Building2,
+  Boxes,
+  Users,
+  Handshake,
+  Truck,
+  ShoppingCart,
+  Wallet,
+  Landmark,
+  Briefcase,
+  Settings,
+  FileBarChart,
+  Hammer,
+  LifeBuoy,
+  Package
+} from "lucide-react";
 import { cn } from "@/components/ui/cn";
 import { usePathname } from "next/navigation";
 
@@ -14,6 +31,9 @@ const nav = [
   { href: "/sales", label: "Sales", icon: Handshake },
   { href: "/vendors", label: "Vendors", icon: Truck },
   { href: "/procurement", label: "Procurement", icon: ShoppingCart },
+  { href: "/inventory", label: "Inventory", icon: Package },
+  { href: "/constructor", label: "Constructor", icon: Hammer },
+  { href: "/support", label: "Support", icon: LifeBuoy },
   { href: "/accounting", label: "Accounting", icon: Wallet },
   { href: "/hr", label: "HR", icon: Briefcase },
   { href: "/reports", label: "Reports", icon: FileBarChart },
