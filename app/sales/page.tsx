@@ -8,7 +8,6 @@ import PageHeader from "@/components/common/PageHeader";
 import FilterBar from "@/components/common/FilterBar";
 import Select from "@/components/ui/Select";
 import useFakeLoading from "@/components/hooks/useFakeLoading";
-import Guard from "@/components/common/Guard";
 
 export default function SalesPage() {
   const loading = useFakeLoading(400);
@@ -27,19 +26,17 @@ export default function SalesPage() {
     { header: "Date", accessor: "date" },
   ], []);
   return (
-    <Guard permission="sales:view">
-      <div className="space-y-4">
-        <PageHeader title="Booking Management" />
-        <FilterBar>
-          <Select value={status} onChange={(e) => setStatus(e.target.value)} className="w-40">
-            <option value="">All status</option>
-            <option>Confirmed</option>
-            <option>Pending</option>
-            <option>Cancelled</option>
-          </Select>
-        </FilterBar>
-        <DataTable data={filtered} columns={cols} loading={loading} />
-      </div>
-    </Guard>
+    <div className="space-y-4">
+      <PageHeader title="Booking Management" />
+      <FilterBar>
+        <Select value={status} onChange={(e) => setStatus(e.target.value)} className="w-40">
+          <option value="">All status</option>
+          <option>Confirmed</option>
+          <option>Pending</option>
+          <option>Cancelled</option>
+        </Select>
+      </FilterBar>
+      <DataTable data={filtered} columns={cols} loading={loading} />
+    </div>
   );
 }

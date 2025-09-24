@@ -9,7 +9,6 @@ import PageHeader from "@/components/common/PageHeader";
 import FilterBar from "@/components/common/FilterBar";
 import Select from "@/components/ui/Select";
 import useFakeLoading from "@/components/hooks/useFakeLoading";
-import Guard from "@/components/common/Guard";
 
 export default function CustomersPage() {
   const loading = useFakeLoading(400);
@@ -26,19 +25,17 @@ export default function CustomersPage() {
     { header: "Status", accessor: "status" },
   ], []);
   return (
-    <Guard permission="customers:view">
-      <div className="space-y-4">
-        <PageHeader title="Customers" actions={<Button>Add Customer</Button>} />
-        <FilterBar>
-          <Select value={status} onChange={(e) => setStatus(e.target.value)} className="w-40">
-            <option value="">All status</option>
-            <option>Active</option>
-            <option>Lead</option>
-            <option>Inactive</option>
-          </Select>
-        </FilterBar>
-        <DataTable data={filtered} columns={cols} loading={loading} />
-      </div>
-    </Guard>
+    <div className="space-y-4">
+      <PageHeader title="Customers" actions={<Button>Add Customer</Button>} />
+      <FilterBar>
+        <Select value={status} onChange={(e) => setStatus(e.target.value)} className="w-40">
+          <option value="">All status</option>
+          <option>Active</option>
+          <option>Lead</option>
+          <option>Inactive</option>
+        </Select>
+      </FilterBar>
+      <DataTable data={filtered} columns={cols} loading={loading} />
+    </div>
   );
 }

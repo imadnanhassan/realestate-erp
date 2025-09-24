@@ -9,7 +9,6 @@ import PageHeader from "@/components/common/PageHeader";
 import FilterBar from "@/components/common/FilterBar";
 import Input from "@/components/ui/Input";
 import useFakeLoading from "@/components/hooks/useFakeLoading";
-import Guard from "@/components/common/Guard";
 
 export default function ProjectsPage() {
   const loading = useFakeLoading(400);
@@ -30,15 +29,13 @@ export default function ProjectsPage() {
   ], []);
 
   return (
-    <Guard permission="projects:view">
-      <div className="space-y-4">
-        <PageHeader title="Projects" actions={<Button>New Project</Button>} />
-        <FilterBar>
-          <Input placeholder="Filter by location..." value={loc} onChange={(e) => setLoc(e.target.value)} className="max-w-xs" />
-          <Input type="number" placeholder="Min progress %" value={minProg} onChange={(e) => setMinProg(Number(e.target.value || 0))} className="w-40" />
-        </FilterBar>
-        <DataTable data={filtered} columns={cols} loading={loading} />
-      </div>
-    </Guard>
+    <div className="space-y-4">
+      <PageHeader title="Projects" actions={<Button>New Project</Button>} />
+      <FilterBar>
+        <Input placeholder="Filter by location..." value={loc} onChange={(e) => setLoc(e.target.value)} className="max-w-xs" />
+        <Input type="number" placeholder="Min progress %" value={minProg} onChange={(e) => setMinProg(Number(e.target.value || 0))} className="w-40" />
+      </FilterBar>
+      <DataTable data={filtered} columns={cols} loading={loading} />
+    </div>
   );
 }

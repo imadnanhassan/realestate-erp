@@ -22,33 +22,27 @@ import {
 } from "lucide-react";
 import { cn } from "@/components/ui/cn";
 import { usePathname } from "next/navigation";
-import { useRBAC } from "@/components/providers/RBACProvider";
 
-type NavItem = { href: string; label: string; icon: any; perm: string };
-
-const nav: NavItem[] = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard, perm: "dashboard:view" },
-  { href: "/projects", label: "Projects", icon: Building2, perm: "projects:view" },
-  { href: "/products", label: "Products", icon: Boxes, perm: "products:view" },
-  { href: "/customers", label: "Customers", icon: Users, perm: "customers:view" },
-  { href: "/sales", label: "Sales", icon: Handshake, perm: "sales:view" },
-  { href: "/vendors", label: "Vendors", icon: Truck, perm: "vendors:view" },
-  { href: "/procurement", label: "Procurement", icon: ShoppingCart, perm: "procurement:view" },
-  { href: "/inventory", label: "Inventory", icon: Package, perm: "inventory:view" },
-  { href: "/constructor", label: "Constructor", icon: Hammer, perm: "constructor:view" },
-  { href: "/support", label: "Support", icon: LifeBuoy, perm: "support:view" },
-  { href: "/accounting", label: "Accounting", icon: Wallet, perm: "accounting:view" },
-  { href: "/hr", label: "HR", icon: Briefcase, perm: "hr:view" },
-  { href: "/reports", label: "Reports", icon: FileBarChart, perm: "reports:view" },
-  { href: "/settings", label: "Settings", icon: Settings, perm: "settings:view" },
+const nav = [
+  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/projects", label: "Projects", icon: Building2 },
+  { href: "/products", label: "Products", icon: Boxes },
+  { href: "/customers", label: "Customers", icon: Users },
+  { href: "/sales", label: "Sales", icon: Handshake },
+  { href: "/vendors", label: "Vendors", icon: Truck },
+  { href: "/procurement", label: "Procurement", icon: ShoppingCart },
+  { href: "/inventory", label: "Inventory", icon: Package },
+  { href: "/constructor", label: "Constructor", icon: Hammer },
+  { href: "/support", label: "Support", icon: LifeBuoy },
+  { href: "/accounting", label: "Accounting", icon: Wallet },
+  { href: "/hr", label: "HR", icon: Briefcase },
+  { href: "/reports", label: "Reports", icon: FileBarChart },
+  { href: "/settings", label: "Settings", icon: Settings },
 ];
 
 export default function SideNav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const { has } = useRBAC();
-
-  const visible = nav.filter((n) => has(n.perm));
 
   return (
     <>
@@ -58,7 +52,7 @@ export default function SideNav() {
           <span className="font-semibold">Real Estate ERP</span>
         </div>
         <nav className="flex-1 overflow-y-auto p-3 space-y-1">
-          {visible.map((item) => {
+          {nav.map((item) => {
             const Icon = item.icon;
             const active = pathname?.startsWith(item.href);
             return (
@@ -106,7 +100,7 @@ export default function SideNav() {
             <span className="font-semibold">Real Estate ERP</span>
           </div>
           <nav className="py-3 space-y-1">
-            {visible.map((item) => {
+            {nav.map((item) => {
               const Icon = item.icon;
               const active = pathname?.startsWith(item.href);
               return (
