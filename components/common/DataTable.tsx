@@ -19,6 +19,8 @@ interface Props<T> {
   pageSize?: number;
   searchable?: boolean;
   loading?: boolean;
+  exportable?: boolean;
+  filename?: string;
 }
 
 export default function DataTable<T extends Record<string, any>>({
@@ -27,6 +29,8 @@ export default function DataTable<T extends Record<string, any>>({
   pageSize = 10,
   searchable = true,
   loading = false,
+  exportable = true,
+  filename = "table_export.csv",
 }: Props<T>) {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
@@ -63,6 +67,26 @@ export default function DataTable<T extends Record<string, any>>({
     });
   }
 
+  function exportCSV() {
+    const visibleCols = columns.filter((c) => c.accessor && c.accessor !== "actions");
+    const headers = visibleCols.map((c) => c.header);
+    const rows = sorted.map((row) =>
+      visibleCols.map((c) => {
+        const key = c.accessor as string;
+        const val = row[key];
+        return typeof val === "string" ? `"${val.replace(/"/g, '""')}"` : String(val ?? "");
+      }).join(",")
+    );
+    const csv = [headers.join(","), ...rows].join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
   return (
     <div className="card p-4">
       <div className="flex items-center justify-between gap-3 mb-4">
@@ -79,6 +103,11 @@ export default function DataTable<T extends Record<string, any>>({
           />
         ) : <div />}
         <div className="flex items-center gap-2 text-sm">
+          {exportable && (
+            <button className="btn btn-secondary px-3 py-1" onClick={exportCSV}>
+              Export CSV
+            </button>
+          )}
           <span className="text-gray-500">Rows:</span>
           <Select
             value={String(size)}

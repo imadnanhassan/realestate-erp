@@ -18,7 +18,8 @@ import {
   FileBarChart,
   Hammer,
   LifeBuoy,
-  Package
+  Package,
+  User
 } from "lucide-react";
 import { cn } from "@/components/ui/cn";
 import { usePathname } from "next/navigation";
@@ -32,11 +33,13 @@ const nav = [
   { href: "/vendors", label: "Vendors", icon: Truck },
   { href: "/procurement", label: "Procurement", icon: ShoppingCart },
   { href: "/inventory", label: "Inventory", icon: Package },
+  { href: "/inventory/items", label: "Items", icon: Package },
   { href: "/constructor", label: "Constructor", icon: Hammer },
   { href: "/support", label: "Support", icon: LifeBuoy },
   { href: "/accounting", label: "Accounting", icon: Wallet },
   { href: "/hr", label: "HR", icon: Briefcase },
   { href: "/reports", label: "Reports", icon: FileBarChart },
+  { href: "/admin/profile", label: "Admin Profile", icon: User },
   { href: "/settings", label: "Settings", icon: Settings },
 ];
 

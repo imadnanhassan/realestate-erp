@@ -2,6 +2,7 @@ import projects from "@/data/projects.json";
 import Card from "@/components/common/Card";
 import Timeline from "@/components/common/Timeline";
 import FileUploader from "@/components/common/FileUploader";
+import PageHeader from "@/components/common/PageHeader";
 
 export default function ProjectDetail({ params }: { params: { id: string } }) {
   const project = projects.find((p) => p.id === params.id);
@@ -16,10 +17,15 @@ export default function ProjectDetail({ params }: { params: { id: string } }) {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-lg font-semibold">{project.name}</h1>
+      <PageHeader title={project.name} />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <Card title="Overview" className="lg:col-span-2">
-          <dl className="grid grid-cols-2 gap-4 text-sm">
+        <Card className="lg:col-span-2">
+          <img
+            src={`https://picsum.photos/seed/${encodeURIComponent(project.id)}/1200/600`}
+            alt={project.name}
+            className="w-full h-64 object-cover rounded-xl border border-gray-100"
+          />
+          <dl className="grid grid-cols-2 gap-4 text-sm mt-4">
             <div>
               <dt className="text-gray-500">Location</dt>
               <dd className="font-medium">{project.location}</dd>
